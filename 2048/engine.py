@@ -11,6 +11,9 @@ class Board():
                 self.array.append([0] * size)
         self.score = score
 
+    def copy(self):
+        return Board(self.size, self.score, copy.deepcopy(self.array))
+
     def add_tile(self):
         # Adds a tile to the game board (2 with 90% chance and 4 with 10% chance)
         open_spots = []
@@ -33,7 +36,7 @@ class Board():
         self.add_tile()
         self.add_tile()
 
-        return self.array
+        return self.array, self.valid_moves()
 
     def board_full(self):
         # Check if there are any open spots on the board
@@ -184,6 +187,18 @@ class Board():
         if add_tile:
             self.add_tile()
 
+    def valid_moves(self):
+        valid_moves = []
+        if self.can_move_up():
+            valid_moves.append(0)
+        if self.can_move_right():
+            valid_moves.append(1)
+        if self.can_move_down():
+            valid_moves.append(2)
+        if self.can_move_left():
+            valid_moves.append(3)
+        return valid_moves
+
     def step(self, action):
         old_score = self.score
 
@@ -197,17 +212,8 @@ class Board():
             self.move_left()
 
         reward = self.score - old_score
-        valid_moves = []
-        if self.can_move_up():
-            valid_moves.append(0)
-        if self.can_move_right():
-            valid_moves.append(1)
-        if self.can_move_down():
-            valid_moves.append(2)
-        if self.can_move_left():
-            valid_moves.append(3)
 
-        return self.array, reward, self.check_loss(), valid_moves
+        return self.array, reward, self.check_loss(), self.valid_moves()
 
     def __repr__(self):
         return "\n".join([str(row) for row in self.array])

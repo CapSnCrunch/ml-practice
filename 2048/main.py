@@ -7,7 +7,7 @@ thickness = 50
 win = pygame.display.set_mode((width, height))
 pygame.display.set_caption('2048')
 
-game = GameWindow(6, width, height, thickness)
+game = GameWindow(4, width, height, thickness)
 
 def redraw_window(win):
     game.draw(win)
