@@ -1,0 +1,11 @@
+# Manim media files
+media/
+**/media/
+*.mp4
+*.png
+*.gif
+*.svg
+*.webm
+
+# Specific Manim media folder
+manim/media/
