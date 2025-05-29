@@ -4,8 +4,8 @@ import numpy as np
 class GridVisualization(Scene):
     def construct(self):
         # Create sample data (you can replace this with actual Q and C values)
-        Q = np.zeros((22, 2, 11, 2))
-        C = np.zeros((22, 2, 11, 2))
+        Q = np.zeros((23, 2, 11, 2))
+        C = np.zeros((23, 2, 11, 2))
         
         # Add some sample values for visualization
         Q[11:22, 0, 1:11, 0] = np.random.rand(11, 10)  # Sample values for player sum 11-21, no ace, dealer 1-10, no usable ace
